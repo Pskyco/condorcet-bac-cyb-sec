@@ -19,9 +19,9 @@ namespace Cirque.Classes
             TypeTour = typeTour;
         }
 
-        public void Exécuter(Singe singe)
+        public void Exécuter(Animal animal)
         {
-            Console.WriteLine($"Mon singe exécute {ToString()}");
+            Console.WriteLine($"Mon {animal.GetType().Name} exécute {ToString()}");
         }
 
         public override string ToString()

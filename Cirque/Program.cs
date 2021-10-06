@@ -39,11 +39,18 @@ namespace Cirque
             singe2.Tours.Add(tour2);
             singe2.Tours.Add(tour1);
 
+            var tigre1 = new Tigre();
+            tigre1.Tours.Add(tour2);
+            tigre1.Tours.Add(tour1);
+            
             var dresseur1 = new Dresseur();
-            dresseur1.Singe = singe1;
+            dresseur1.Animal = singe1;
 
             var dresseur2 = new Dresseur();
-            dresseur2.Singe = singe2;
+            dresseur2.Animal = singe2;
+            
+            var dresseur3 = new Dresseur();
+            dresseur3.Animal = tigre1;
 
             var spectateur1 = new Spectateur();
             spectateur1.Nom = "Ludwig";
@@ -56,6 +63,9 @@ namespace Cirque
             
             dresseur2.FaireLeShow(spectateur1);
             dresseur2.FaireLeShow(spectateur2);
+            
+            dresseur3.FaireLeShow(spectateur1);
+            dresseur3.FaireLeShow(spectateur2);
 
             Console.WriteLine("Hello World!");
         }

@@ -2,11 +2,11 @@ namespace Cirque.Classes
 {
     public class Dresseur
     {
-        public Singe Singe { get; set; }
+        public Animal Animal { get; set; }
 
         public void FaireLeShow(Spectateur spectateur)
         {
-            Singe.DemontrerSesTours(spectateur);
+            Animal.DemontrerSesTours(spectateur);
         }
 
         // public void FaireLeShow(List<Spectateur> spectateurs)
