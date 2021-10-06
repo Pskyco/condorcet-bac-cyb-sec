@@ -18,6 +18,8 @@ namespace PcrAnalysis.Classes
 
         public override string ToString()
         {
+            var defaultDate = DateTime.MinValue;
+            
             var returnString = string.Empty;
 
             returnString = $"Id: {Id}, Reason: {Reason}";

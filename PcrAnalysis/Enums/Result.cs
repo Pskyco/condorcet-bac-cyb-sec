@@ -9,6 +9,6 @@
         Negative = 2,
         NonConclusive = 3,
         Other = 4,
-        Loss = 5,
+        Lost = 5
     }
 }
