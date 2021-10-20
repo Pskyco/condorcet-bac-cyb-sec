@@ -1,0 +1,30 @@
+@model PcrTestViewModel
+
+@{
+    ViewData["Title"] = Model.Id == Guid.Empty ? "Create PCR test" : "Edit PCR test";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form action="@Url.Action("Edit")" method="post">
+    <input type="hidden" asp-for="Id"></input>
+    <div class="form-group">
+        <label asp-for="Code">Code</label>
+        <input type="text" class="form-control" asp-for="Code" placeholder="Enter code">
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Comment">Commentaire</label>
+        <textarea class="form-control" asp-for="Comment" placeholder="Enter comment" rows="2"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReceptionDate">Date de réception</label>
+        <input type="date" class="form-control" asp-for="ReceptionDate">
+    </div>
+    <div class="form-group">
+        <label asp-for="AnalysisDate">Date d'analyse</label>
+        <input type="datetime-local" class="form-control" asp-for="AnalysisDate">
+    </div>
+    <button type="button" onclick="history.go(-1)" class="btn btn-secondary">Retour</button>
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+</form>

@@ -2,6 +2,38 @@
     ViewData["Title"] = "Pcr Tests";
 }
 
+@model List<WebApplication.Entities.PcrTest>
+
 <h2>@ViewData["Title"]</h2>
 
 <a href="@Url.Action("Create")" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create PCR test</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Commentaire</th>
+        <th scope="col">Date de réception</th>
+        <th scope="col">Date d'analyse</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Code</td>
+            <td>@item.Comment</td>
+            <td>@(item.ReceptionDate.HasValue ? string.Format("{0:dd'/'MM'/'yyyy}", item.ReceptionDate) : "-")</td>
+            <td>@(item.AnalysisDate?.ToString("dd'/'MM'/'yyyy HH:mm") ?? "-")</td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-secondary" role="button" aria-pressed="true">Modifier</a>
+            </td>
+            <td>
+                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-secondary btn-danger" role="button" aria-pressed="true">Supprimer</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
