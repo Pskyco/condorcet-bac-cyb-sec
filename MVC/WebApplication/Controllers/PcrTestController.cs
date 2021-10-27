@@ -1,6 +1,9 @@
 using System;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApplication.Entities;
 using WebApplication.Models;
@@ -12,17 +15,29 @@ namespace WebApplication.Controllers
     {
         private readonly ILogger<PcrTestController> _logger;
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public PcrTestController(ILogger<PcrTestController> logger, ApplicationDbContext dbContext)
+        public PcrTestController(ILogger<PcrTestController> logger, ApplicationDbContext dbContext, IMapper mapper)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         // GET
         public IActionResult Index()
         {
-            return View(_dbContext.PcrTests.ToList());
+            // var viewModels = new List<PcrTestViewModel>();
+            //
+            // foreach (var pcrTest in _dbContext.PcrTests)
+            //     viewModels.Add(_mapper.Map<PcrTestViewModel>(pcrTest));
+            //
+            // return View(viewModels);
+
+            return View(_dbContext.PcrTests
+                .Include(x => x.PerformerPerson)
+                .Select(x => _mapper.Map<PcrTestViewModel>(x))
+                .ToList());
         }
 
         public IActionResult Create()
@@ -38,14 +53,12 @@ namespace WebApplication.Controllers
                 pcrTest = _dbContext.PcrTests.Find(id);
 
             pcrTest ??= new PcrTest();
-            
-            return View(new PcrTestViewModel()
-            {
-                Code = pcrTest.Code,
-                Comment = pcrTest.Comment,
-                AnalysisDate = pcrTest.AnalysisDate,
-                Id = pcrTest.Id,
-            });
+            var viewModel = _mapper.Map<PcrTestViewModel>(pcrTest);
+            viewModel.SliPersons = _dbContext.Persons
+                                    .Select(x => new SelectListItem(x.FullName, x.Id.ToString()))
+                                    .ToList();
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -62,17 +75,14 @@ namespace WebApplication.Controllers
                 pcrTest = _dbContext.PcrTests.Find(model.Id);
 
             pcrTest ??= new PcrTest();
-            pcrTest.Code = model.Code;
-            pcrTest.Comment = model.Comment;
-            pcrTest.AnalysisDate = model.AnalysisDate;
-            pcrTest.ReceptionDate = model.ReceptionDate;
+            _mapper.Map(model, pcrTest);
 
             _dbContext.Update(pcrTest);
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index");
         }
-        
+
         public IActionResult Delete(Guid id)
         {
             PcrTest pcrTest = null;

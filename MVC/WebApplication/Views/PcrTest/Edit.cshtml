@@ -1,7 +1,8 @@
+@using WebApplication.Entities.Enums
 @model PcrTestViewModel
 
 @{
-    ViewData["Title"] = Model.Id == Guid.Empty ? "Create PCR test" : "Edit PCR test";
+    ViewData["Title"] = Model.Id == Guid.Empty ? "Créer un test PCR" : "Modifier un test PCR";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -10,12 +11,17 @@
     <input type="hidden" asp-for="Id"></input>
     <div class="form-group">
         <label asp-for="Code">Code</label>
-        <input type="text" class="form-control" asp-for="Code" placeholder="Enter code">
+        <input type="text" class="form-control" asp-for="Code" placeholder="Entrer le code">
         <span asp-validation-for="Code" class="text-danger"></span>
     </div>
     <div class="form-group">
+        <label asp-for="Result">Résultat</label>
+        <select class="form-control" asp-for="Result" asp-items="Html.GetEnumSelectList<ResultEnum>()">
+        </select>
+    </div>
+    <div class="form-group">
         <label asp-for="Comment">Commentaire</label>
-        <textarea class="form-control" asp-for="Comment" placeholder="Enter comment" rows="2"></textarea>
+        <textarea class="form-control" asp-for="Comment" placeholder="Entrer le commentaire" rows="2"></textarea>
     </div>
     <div class="form-group">
         <label asp-for="ReceptionDate">Date de réception</label>
@@ -24,6 +30,12 @@
     <div class="form-group">
         <label asp-for="AnalysisDate">Date d'analyse</label>
         <input type="datetime-local" class="form-control" asp-for="AnalysisDate">
+    </div>
+    <div class="form-group">
+        <label asp-for="PerformerPersonId">Réalisé par</label>
+        <select class="form-control" asp-for="PerformerPersonId" asp-items="Model.SliPersons">
+            <option value="">-- Choisir une personne --</option>
+        </select>
     </div>
     <button type="button" onclick="history.go(-1)" class="btn btn-secondary">Retour</button>
     <button type="submit" class="btn btn-primary">Sauvegarder</button>

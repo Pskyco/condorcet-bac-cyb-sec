@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApplication.Configurations;
 using WebApplication.Persistence;
 
 namespace WebApplication
@@ -27,6 +28,8 @@ namespace WebApplication
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+            services.AddAutoMapper(typeof(AutoMapperConfigurations).Assembly);
+
             services.AddDbContext<ApplicationDbContext>(x =>
                 x.UseSqlite(Configuration.GetConnectionString("ApplicationDb")));
         }
@@ -44,7 +47,7 @@ namespace WebApplication
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

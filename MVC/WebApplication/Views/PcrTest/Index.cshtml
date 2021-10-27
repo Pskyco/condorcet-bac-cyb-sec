@@ -2,7 +2,8 @@
     ViewData["Title"] = "Pcr Tests";
 }
 
-@model List<WebApplication.Entities.PcrTest>
+@using WebApplication.Extensions
+@model List<PcrTestViewModel>
 
 <h2>@ViewData["Title"]</h2>
 
@@ -15,6 +16,8 @@
         <th scope="col">Commentaire</th>
         <th scope="col">Date de réception</th>
         <th scope="col">Date d'analyse</th>
+        <th scope="col">Résultat</th>
+        <th scope="col">Réalisé par</th>
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
@@ -27,6 +30,8 @@
             <td>@item.Comment</td>
             <td>@(item.ReceptionDate.HasValue ? string.Format("{0:dd'/'MM'/'yyyy}", item.ReceptionDate) : "-")</td>
             <td>@(item.AnalysisDate?.ToString("dd'/'MM'/'yyyy HH:mm") ?? "-")</td>
+            <td>@item.Result.GetDisplayName()</td>
+            <td>@(item.PerformerPerson?.FullName ?? "-")</td>
             <td>
                 <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-secondary" role="button" aria-pressed="true">Modifier</a>
             </td>
