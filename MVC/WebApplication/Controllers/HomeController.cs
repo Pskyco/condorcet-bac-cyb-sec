@@ -20,7 +20,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            _logger.LogTrace("I'm here");
+            _logger.LogError("I'm here");
             
             _notifyService.Success("This is a Success Notification");
             _notifyService.Error("This is an Error Notification");

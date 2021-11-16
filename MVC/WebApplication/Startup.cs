@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using WebApplication.Configurations;
 using WebApplication.Persistence;
 
@@ -34,6 +36,13 @@ namespace WebApplication
 
             services.AddDbContext<ApplicationDbContext>(x =>
                 x.UseSqlite(Configuration.GetConnectionString("ApplicationDb")));
+            
+            services.AddLogging(options =>
+            {
+                options.ClearProviders();
+                options.SetMinimumLevel(LogLevel.Trace);
+                options.AddSerilog();
+            });
 
             services.AddNotyf(config =>
             {
