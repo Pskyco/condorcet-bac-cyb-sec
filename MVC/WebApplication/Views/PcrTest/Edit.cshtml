@@ -39,4 +39,18 @@
     </div>
     <button type="button" onclick="history.go(-1)" class="btn btn-secondary">Retour</button>
     <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    @* <button type="button" onclick="sendForm()" class="btn btn-primary">Sauvegarder</button> *@
 </form>
+
+@* <script> *@
+@*     function sendForm(){ *@
+@*         $.ajax({ *@
+@*             url: '@Url.Action("Edit", "PcrTest")', *@
+@*             data: $("form").serialize(), *@
+@*             method: 'POST', *@
+@*             success: function (data) { *@
+@*                 console.log(data); *@
+@*             } *@
+@*         }); *@
+@*     } *@
+@* </script> *@

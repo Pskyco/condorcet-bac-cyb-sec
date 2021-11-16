@@ -5,4 +5,22 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <button type="button" onclick="getMessage()" class="btn btn-secondary">Click me</button>
 </div>
+<br>
+
+<div id="messages">
+    
+</div>
+
+<script>
+    function getMessage(){
+        $.ajax({
+            url: '@Url.Action("GetMessageAlert", "Message")',
+            method: 'GET',
+            success: function (data) {
+                $("#messages").append(data);
+            }
+        });
+    }
+</script>
