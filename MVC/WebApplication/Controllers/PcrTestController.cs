@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,12 +17,15 @@ namespace WebApplication.Controllers
         private readonly ILogger<PcrTestController> _logger;
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly INotyfService _notifyService;
 
-        public PcrTestController(ILogger<PcrTestController> logger, ApplicationDbContext dbContext, IMapper mapper)
+        public PcrTestController(ILogger<PcrTestController> logger, ApplicationDbContext dbContext, IMapper mapper, 
+            INotyfService notifyService)
         {
             _logger = logger;
             _dbContext = dbContext;
             _mapper = mapper;
+            _notifyService = notifyService;
         }
 
         // GET
@@ -79,6 +83,8 @@ namespace WebApplication.Controllers
 
             _dbContext.Update(pcrTest);
             _dbContext.SaveChanges();
+            
+            _notifyService.Success("Le test PCR a bien été sauvegardé");
 
             return RedirectToAction("Index");
         }
@@ -94,7 +100,9 @@ namespace WebApplication.Controllers
             {
                 _dbContext.Remove(pcrTest);
                 _dbContext.SaveChanges();
-            }
+                _notifyService.Success("Le test PCR a bien été supprimé");
+            } else
+                _notifyService.Warning("Aucun test PCR trouvé avec cet identifiant");
 
             return RedirectToAction("Index");
         }

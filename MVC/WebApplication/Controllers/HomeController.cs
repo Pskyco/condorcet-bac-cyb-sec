@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebApplication.Entities.Enums;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -10,16 +9,27 @@ namespace WebApplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly INotyfService _notifyService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, INotyfService notifyService)
         {
             _logger = logger;
+            _notifyService = notifyService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
             _logger.LogTrace("I'm here");
+            
+            _notifyService.Success("This is a Success Notification");
+            _notifyService.Error("This is an Error Notification");
+            _notifyService.Warning("This is a Warning Notification");
+            _notifyService.Information("This is an Information Notification");
+            _notifyService.Success("This toast will be dismissed in 10 seconds.",10);
+            _notifyService.Custom("Custom Notification - closes in 5 seconds.", 5, "whitesmoke", "fa fa-gear");
+            _notifyService.Custom("Custom Notification - closes in 5 seconds.", 10, "#135224", "fa fa-gear");
+
             return View();
         }
 
