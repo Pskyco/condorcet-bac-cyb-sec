@@ -9,6 +9,9 @@ namespace WebApplication.Entities
     {
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// Unique code of pcr test
+        /// </summary>
         [MaxLength(10)] [Required] public string Code { get; set; }
 
         [MaxLength(512)] public string Comment { get; set; }

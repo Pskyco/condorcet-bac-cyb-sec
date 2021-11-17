@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Entities;
 
-namespace WebApplication.Persistence
+namespace WebApplication.Infrastructure.Contexts
 {
     public class ApplicationDbContext : DbContext
     {

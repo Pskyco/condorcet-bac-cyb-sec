@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication.Persistence;
+using WebApplication.Infrastructure.Contexts;
 
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211027164157_AddResult")]
-    partial class AddResult
+    [Migration("20211020171801_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,10 +37,6 @@ namespace WebApplication.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("ReceptionDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Result")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

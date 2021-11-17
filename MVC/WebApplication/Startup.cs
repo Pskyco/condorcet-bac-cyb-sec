@@ -6,15 +6,13 @@ using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using WebApplication.Configurations;
-using WebApplication.Persistence;
+using WebApplication.Infrastructure;
 
 namespace WebApplication
 {
@@ -34,9 +32,8 @@ namespace WebApplication
 
             services.AddAutoMapper(typeof(AutoMapperConfigurations).Assembly);
 
-            services.AddDbContext<ApplicationDbContext>(x =>
-                x.UseSqlite(Configuration.GetConnectionString("ApplicationDb")));
-            
+            services.AddInfrastructure(Configuration);
+
             services.AddLogging(options =>
             {
                 options.ClearProviders();
@@ -79,7 +76,7 @@ namespace WebApplication
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            
+
             app.UseNotyf();
         }
     }

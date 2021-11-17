@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApplication.Entities;
+using WebApplication.Infrastructure.Contexts;
 using WebApplication.Models;
-using WebApplication.Persistence;
 
 namespace WebApplication.Controllers
 {
