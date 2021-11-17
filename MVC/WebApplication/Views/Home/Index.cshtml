@@ -5,7 +5,8 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <button type="button" onclick="getMessage()" class="btn btn-secondary">Click me</button>
+    <button type="button" onclick="getMessage()" class="btn btn-secondary">Générer un message aléatoire</button>
+    <button type="button" onclick="getMessage('Bonjour !')" class="btn btn-secondary">Dire bonjour</button>
 </div>
 <br>
 
@@ -14,9 +15,10 @@
 </div>
 
 <script>
-    function getMessage(){
+    function getMessage(messageJs){
         $.ajax({
             url: '@Url.Action("GetMessageAlert", "Message")',
+            data: { message: messageJs },
             method: 'GET',
             success: function (data) {
                 $("#messages").append(data);

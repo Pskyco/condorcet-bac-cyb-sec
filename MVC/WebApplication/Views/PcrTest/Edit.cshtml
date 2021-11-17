@@ -7,7 +7,7 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<form action="@Url.Action("Edit")" method="post">
+<form action="@Url.Action("Edit")" id="pcrTestForm" method="post">
     <input type="hidden" asp-for="Id"></input>
     <div class="form-group">
         <label asp-for="Code">Code</label>
@@ -42,15 +42,40 @@
     @* <button type="button" onclick="sendForm()" class="btn btn-primary">Sauvegarder</button> *@
 </form>
 
-@* <script> *@
-@*     function sendForm(){ *@
-@*         $.ajax({ *@
-@*             url: '@Url.Action("Edit", "PcrTest")', *@
-@*             data: $("form").serialize(), *@
-@*             method: 'POST', *@
-@*             success: function (data) { *@
-@*                 console.log(data); *@
-@*             } *@
-@*         }); *@
-@*     } *@
-@* </script> *@
+<script>
+    // function sendForm(){
+    //     $.ajax({
+    //         url: '@Url.Action("Edit", "PcrTest")',
+    //         data: $("#pcrTestForm").serialize(),
+    //         method: 'POST',
+    //         beforeSend: function () {
+    //             // $("#loading").toggle();
+    //             $("#loading").show();
+    //             // $("#loading").hide();
+    //         },
+    //         success: function (data) {
+    //             console.log(data);
+    //         },
+    //         error: function(jqXHR, exception) {
+    //             if (jqXHR.status === 0) {
+    //                 alert('Not connect.\n Verify Network.');
+    //             } else if (jqXHR.status == 404) {
+    //                 alert('Requested page not found. [404]');
+    //             } else if (jqXHR.status == 500) {
+    //                 alert('Internal Server Error [500].');
+    //             } else if (exception === 'parsererror') {
+    //                 alert('Requested JSON parse failed.');
+    //             } else if (exception === 'timeout') {
+    //                 alert('Time out error.');
+    //             } else if (exception === 'abort') {
+    //                 alert('Ajax request aborted.');
+    //             } else {
+    //                 alert('Uncaught Error.\n' + jqXHR.responseText);
+    //             }
+    //         },
+    //         complete: function () {
+    //             $("#loading").hide();
+    //         }
+    //     });
+    // }
+</script>

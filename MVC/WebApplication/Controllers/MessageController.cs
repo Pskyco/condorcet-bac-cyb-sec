@@ -14,7 +14,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult GetMessageAlert(string message = "")
+        public PartialViewResult GetMessageAlert(string message = null)
         {
             return PartialView("_Message", message ?? Guid.NewGuid().ToString());
         }
