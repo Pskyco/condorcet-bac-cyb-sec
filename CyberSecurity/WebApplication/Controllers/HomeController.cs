@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Ganss.XSS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication.Models;
@@ -16,6 +17,29 @@ namespace WebApplication.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+
+        public IActionResult Xss()
+        {
+            return View(new User());
+        }
+
+        [HttpPost]
+        public IActionResult Xss(User user)
+        {
+            user.Username = new HtmlSanitizer().Sanitize(user.Username);
+            return View(user);
+        }
+
+        public IActionResult UnsafeJs(int userId)
+        {
+            return View(new User { UserId = userId });
+        }
+
+        [HttpPost]
+        public IActionResult UnsafeJs(User model)
+        {
+            return RedirectToAction("UnsafeJs", new { userId = model.UserId });
         }
 
         public IActionResult Index()

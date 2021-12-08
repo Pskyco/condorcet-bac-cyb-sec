@@ -1,0 +1,32 @@
+@using System.Text.Encodings.Web
+@model User
+
+@inject JavaScriptEncoder _javaScriptEncoder
+
+<div class="alert alert-warning">
+    Go to this URL to try out XSS injection, set a username, and click on submit button: <a href="https://localhost:5001/Home/UnsafeJs?userId=965%27);alert(%27You%20got%20attacked%27);//">click here</a>
+</div>
+
+<h2>Unsafe Javascript</h2>
+<form asp-action="UnsafeJs">
+    <div class="form-group">
+        <label for="Username">Please enter your user name</label>
+        <input type="text" class="form-control" name="Username" placeholder="Please enter your user name...">
+    </div>
+    <button type="submit" class="mt-md-1 btn btn-primary" onclick="alert('Saving user name for account with id: @Context.Request.Query["userId"]');">Submit</button>
+</form>
+<br/>
+<h2>Safe Javascript</h2>
+<form asp-action="UnsafeJs">
+    <div class="form-group">
+        <label for="Username">Please enter your user name</label>
+        <input type="text" class="form-control" name="Username" placeholder="Please enter your user name...">
+    </div>
+    <button type="submit" class="mt-md-1 btn btn-primary" 
+            onclick="alert('Saving user name for account with id: @_javaScriptEncoder.Encode(@Context.Request.Query["userId"])'
+            );">Submit</button>
+    @* Safe n°2 *@
+    <button type="submit" class="mt-md-1 btn btn-primary" 
+            onclick="alert(`Saving user name for account with id: @Context.Request.Query["userId"]`);"
+            >Submit</button>
+</form>
