@@ -12,6 +12,7 @@ using WebApplication.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApplication.Middlewares;
 
 namespace WebApplication
 {
@@ -51,6 +52,8 @@ namespace WebApplication
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseMiddleware<SecurityHeadersMiddleware>();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
