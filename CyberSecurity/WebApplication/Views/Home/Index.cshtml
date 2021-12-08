@@ -5,6 +5,16 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <img src="https://cdn.pixabay.com/photo/2021/12/04/10/58/nature-6844982_960_720.jpg">
 </div>
 
-<img src="https://cdn.pixabay.com/photo/2021/12/04/10/58/nature-6844982_960_720.jpg">
+    <a asp-controller="Home" asp-action="Xss">
+        <button type="button" class="btn btn-primary btn-lg btn-block mt-1">XSS injection use case n°1</button>
+    </a>
+    <a asp-controller="Home" asp-action="UnsafeJs">
+        <button type="button" class="btn btn-primary btn-lg btn-block mt-1">XSS injection use case n°2</button>
+    </a>
+    <a asp-controller="Account" asp-action="Index">
+        <button type="button" class="btn btn-warning btn-lg btn-block mt-1">SQL injections</button>
+    </a>
+</div>

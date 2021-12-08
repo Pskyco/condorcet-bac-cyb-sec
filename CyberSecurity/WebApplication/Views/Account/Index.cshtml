@@ -1,0 +1,40 @@
+@model User
+@{
+    var js = "<script>alert(\"test\");</script>";
+}
+
+<div class="alert alert-warning">
+    Enter this snippet to try out SQL injection: <pre>1' OR 'ok'='ok</pre>
+</div>
+
+<form class="form-inline" asp-action="MyBankAccountUnsafe">
+    <h3>Unsafe (FromSqlRaw)</h3>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="text" name="id" class="form-control" placeholder="bank account identifier"></input>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Get my account</button>
+</form>
+
+<form class="form-inline" asp-action="MyBankAccountSafe">
+    <h3>Safe (int-typed)</h3>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="text" name="id" class="form-control" placeholder="bank account identifier"></input>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Get my account</button>
+</form>
+
+<form class="form-inline" asp-action="MyBankAccountSafeStringEf">
+    <h3>Safe (string-typed)</h3>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="text" name="id" class="form-control" placeholder="bank account identifier"></input>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Get my account</button>
+</form>
+
+<form class="form-inline" asp-action="MyBankAccountSafeStringEfInterpolated">
+    <h3>Safe (string-typed + FromSqlInterpolated)</h3>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="text" name="id" class="form-control" placeholder="bank account identifier"></input>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Get my account</button>
+</form>
