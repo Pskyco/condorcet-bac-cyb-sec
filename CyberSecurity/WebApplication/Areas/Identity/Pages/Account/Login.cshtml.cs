@@ -85,6 +85,9 @@ namespace WebApplication.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    // CWE-601: to check this, comment LocalRedirect and use Redirect
+                    // then, go to https://localhost:5001/Identity/Account/Login?ReturnUrl=http://google.be and log in
+                    // return Redirect(returnUrl);
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
