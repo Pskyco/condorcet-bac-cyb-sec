@@ -31,12 +31,12 @@ namespace WebApplication.Controllers
         {
             return View("MyBankAccount", new List<Account>() { _dbContext.Find<Account>(id) });
         }
-        
+
         public IActionResult MyBankAccountSafeStringEf(string id)
         {
             return View("MyBankAccount", new List<Account>() { _dbContext.Find<Account>(id) });
         }
-        
+
         public IActionResult MyBankAccountSafeStringEfInterpolated(string id)
         {
             return View("MyBankAccount",
