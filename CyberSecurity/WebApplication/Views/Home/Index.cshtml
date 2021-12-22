@@ -11,19 +11,19 @@
     <div class="alert alert-warning">
         This image won't be displayed until you adapt the CSP <strong>img-src</strong> in the <strong>SecurityHeaderMiddleware</strong>, like <pre>"img-src 'self' cdn.pixabay.com;"</pre>
     </div>
-    
+
     <figure class="figure">
         <img src="https://cdn.pixabay.com/photo/2021/12/04/10/58/nature-6844982_960_720.jpg" class="figure-img img-fluid rounded" alt="Random image stored on the internet.">
         <figcaption class="figure-caption text-right">A random image stored on the interne, not visible because CSP are on 'self'</figcaption>
     </figure>
-    
+
     <br/>
-    
+
     <figure class="figure">
         <img src="images/example.jpg" class="figure-img img-fluid rounded" alt="Random image stored on the website.">
         <figcaption class="figure-caption text-right">A random image stored on the website, visible because CSP are on 'self'</figcaption>
     </figure>
-    
+
     <hr/>
 
     <div class="row">
@@ -41,5 +41,9 @@
 
     <a asp-controller="Account" asp-action="Index">
         <button type="button" class="btn btn-warning btn-lg btn-block mt-1">SQL injections (CWE-89)</button>
+    </a>
+
+    <a asp-controller="Cors" asp-action="Index">
+        <button type="button" class="btn btn-info btn-lg btn-block mt-1">CORS Security</button>
     </a>
 </div>

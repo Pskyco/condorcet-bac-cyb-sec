@@ -53,7 +53,14 @@ namespace WebApplication
                 app.UseHsts();
             }
 
-            app.UseMiddleware<SecurityHeadersMiddleware>();
+            // use NWebsec.AspNetCore NuGet package
+            // app.UseMiddleware<SecurityHeadersMiddleware>();
+            app.UseCsp(options =>
+            {
+                options.ScriptSources(s => s.Self());
+                options.StyleSources(s => s.Self());
+                options.ImageSources(s => s.Self());
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
