@@ -18,7 +18,9 @@ namespace IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("myApi", "My API")
+                new ApiScope("myApi", "My API"),
+                new ApiScope("myApi2", "My API 2"),
+                new ApiScope("myApi3", "My API 3")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -34,7 +36,8 @@ namespace IdentityServer
                     },
                     AllowedScopes = new List<string>()
                     {
-                        "myApi"
+                        "myApi",
+                        "myApi2",
                     }
                 }
             };

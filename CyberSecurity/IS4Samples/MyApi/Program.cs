@@ -17,6 +17,12 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 
+builder.Services.AddAuthorization(options => options.AddPolicy("MyApiScope", policy =>
+{
+    policy.RequireAuthenticatedUser();
+    policy.RequireClaim("scope", "myApi");
+}));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -34,6 +40,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization("MyApiScope");
 
 app.Run();
