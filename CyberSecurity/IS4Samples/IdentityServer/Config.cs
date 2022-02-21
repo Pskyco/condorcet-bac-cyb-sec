@@ -26,7 +26,7 @@ namespace IdentityServer
             {
                 new Client()
                 {
-                    ClientId = "myClient",
+                    ClientId = "myConsole",
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = new List<Secret>()
                     {

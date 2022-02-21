@@ -17,7 +17,7 @@ if (discovery.IsError)
 var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest()
 {
     Address = discovery.TokenEndpoint,
-    ClientId = "myClient",
+    ClientId = "myConsole",
     ClientSecret = "mySecret",
     Scope = "myApi",
 });
