@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "IdentityS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApi", "MyApi\MyApi.csproj", "{28D751DD-F9C8-4C61-A88F-6C69C4D8E573}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConsole", "MyConsole\MyConsole.csproj", "{E4F28810-C521-4437-BF23-AACC58D2EEEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{28D751DD-F9C8-4C61-A88F-6C69C4D8E573}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28D751DD-F9C8-4C61-A88F-6C69C4D8E573}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28D751DD-F9C8-4C61-A88F-6C69C4D8E573}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F28810-C521-4437-BF23-AACC58D2EEEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F28810-C521-4437-BF23-AACC58D2EEEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F28810-C521-4437-BF23-AACC58D2EEEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F28810-C521-4437-BF23-AACC58D2EEEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
