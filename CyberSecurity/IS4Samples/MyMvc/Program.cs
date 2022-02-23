@@ -1,3 +1,7 @@
+using System.Security.Claims;
+using IdentityModel;
+using Microsoft.AspNetCore.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,6 +22,10 @@ builder.Services.AddAuthentication(options =>
         options.SaveTokens = true;
         options.Scope.Add("myApi");
         options.Scope.Add("offline_access");
+        // retrieve all claims from user endpoint (default is false)
+        options.GetClaimsFromUserInfoEndpoint = true;
+        options.ClaimActions.MapUniqueJsonKey(JwtClaimTypes.WebSite, JwtClaimTypes.WebSite);
+        options.ClaimActions.MapUniqueJsonKey(JwtClaimTypes.Address, JwtClaimTypes.Address);
     });
 
 var app = builder.Build();

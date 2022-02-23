@@ -5,6 +5,7 @@
 using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using IdentityModel;
 
 namespace IdentityServer
 {
@@ -14,7 +15,16 @@ namespace IdentityServer
             new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
+                //new IdentityResources.Profile()
+                new IdentityResource(
+                    name: "profile",
+                    displayName: "your custom profile data",
+                    userClaims: new List<string>()
+                    {
+                        JwtClaimTypes.Name,
+                        JwtClaimTypes.Address,
+                        JwtClaimTypes.WebSite,
+                    })
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
