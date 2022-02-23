@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConsole", "MyConsole\MyCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMvc", "MyMvc\MyMvc.csproj", "{0A78288A-FD1A-4200-8A3A-C6E07540818F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer4Ef", "IdentityServer4Ef\IdentityServer4Ef.csproj", "{D8611970-C6BA-48A4-BE4C-4BCB42CFEEAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{0A78288A-FD1A-4200-8A3A-C6E07540818F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A78288A-FD1A-4200-8A3A-C6E07540818F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A78288A-FD1A-4200-8A3A-C6E07540818F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8611970-C6BA-48A4-BE4C-4BCB42CFEEAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8611970-C6BA-48A4-BE4C-4BCB42CFEEAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8611970-C6BA-48A4-BE4C-4BCB42CFEEAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8611970-C6BA-48A4-BE4C-4BCB42CFEEAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
