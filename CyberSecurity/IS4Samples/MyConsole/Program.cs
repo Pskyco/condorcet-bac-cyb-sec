@@ -19,7 +19,10 @@ var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCr
     Address = discovery.TokenEndpoint,
     ClientId = "myConsole",
     ClientSecret = "mySecret",
+    // since our API only accept 'myApi' scope, this call will lead into 'Forbiden' response
     Scope = "myApi2",
+    // will return 'Sucess' code
+    //Scope = "myApi",
 });
 
 if (tokenResponse.IsError)

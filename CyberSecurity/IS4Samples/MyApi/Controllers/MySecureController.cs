@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace MyApi.Controllers;
 
 [Route("mySecure")]
-[Authorize]
 public class MySecureController : ControllerBase
 {
     [HttpGet]
