@@ -66,6 +66,8 @@ namespace IdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         "myApi"
                     },
+                    // if needed, add 'consent page' on first connection
+                    // RequireConsent = true,
                     AllowOfflineAccess = true,
                     PostLogoutRedirectUris = { "https://localhost:7235/signout-callback-oidc" },
                     RedirectUris = { "https://localhost:7235/signin-oidc" }
