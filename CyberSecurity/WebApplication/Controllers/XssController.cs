@@ -22,8 +22,14 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Index(User user)
         {
-            user.Username = new HtmlSanitizer().Sanitize(user.Username);
             return View(user);
+        }
+        
+        [HttpPost]
+        public IActionResult IndexSanitized(User user)
+        {
+            user.Username = new HtmlSanitizer().Sanitize(user.Username);
+            return View("Index", user);
         }
 
         public IActionResult UnsafeJs(int userId)

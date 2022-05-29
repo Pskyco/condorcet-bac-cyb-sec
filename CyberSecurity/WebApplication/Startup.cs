@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApplication.Enums;
+using WebApplication.Middlewares;
 
 namespace WebApplication
 {
@@ -62,8 +63,10 @@ namespace WebApplication
                 app.UseHsts();
             }
 
-            // use NWebsec.AspNetCore NuGet package
+            // Content Security Policity (CSP) - documentation: https://content-security-policy.com/
+            // 2 methods : you write all your directives by hand
             // app.UseMiddleware<SecurityHeadersMiddleware>();
+            // or you use NWebsec.AspNetCore NuGet package that will make it more readable
             app.UseCsp(options =>
             {
                 options.ScriptSources(s => s.Self());

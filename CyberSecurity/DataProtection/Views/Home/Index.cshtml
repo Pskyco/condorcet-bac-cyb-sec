@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<PersonViewModel>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Protected #</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Firstname</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <th scope="row">@person.EncryptedId</th>
+                <td>@person.LastName</td>
+                <td>@person.FirstName</td>
+                <td>@Html.ActionLink("Edit", "Details",  new { id = person.EncryptedId })</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

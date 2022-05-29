@@ -10,10 +10,31 @@ namespace ApiAudit.Controllers;
 public class AuditsController : ControllerBase
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly ILogger<AuditsController> _logger;
 
-    public AuditsController(ApplicationDbContext dbContext)
+    public AuditsController(ApplicationDbContext dbContext, ILogger<AuditsController> logger)
     {
         _dbContext = dbContext;
+        _logger = logger;
+    }
+
+    [HttpGet, Route("errors")]
+    public async Task<IActionResult> CreateError()
+    {
+        int i = 0;
+
+        while (i != 100)
+        {
+            i++;
+            _logger.LogError($"Random error with guid {Guid.NewGuid()}");
+            _logger.LogDebug($"Random error with guid {Guid.NewGuid()}");
+            _logger.LogCritical($"Random error with guid {Guid.NewGuid()}");
+            _logger.LogInformation($"Random error with guid {Guid.NewGuid()}");
+            _logger.LogTrace($"Random error with guid {Guid.NewGuid()}");
+            _logger.LogWarning($"Random error with guid {Guid.NewGuid()}");
+        }
+
+        return Ok();
     }
 
     [HttpGet]
@@ -30,7 +51,7 @@ public class AuditsController : ControllerBase
 
         if (matching == null)
             return NotFound();
-        
+
         return Ok(matching);
     }
 

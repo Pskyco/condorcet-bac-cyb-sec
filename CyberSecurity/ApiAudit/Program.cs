@@ -43,6 +43,12 @@ void ConfigureServices()
         x.UseSqlServer(builder.Configuration.GetConnectionString("ApiAudit")));
     builder.Services.AddSingleton<IUserService, UserService>();
     builder.Services.AddScoped<AuditTrailHelper>();
+    builder.Services.AddLogging(cfg =>
+    {
+        cfg.ClearProviders();
+        cfg.SetMinimumLevel(LogLevel.Trace);
+        cfg.AddSerilog();
+    });
     ConfigureAudit();
 }
 

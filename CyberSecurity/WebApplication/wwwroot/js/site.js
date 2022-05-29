@@ -10,7 +10,8 @@ document.querySelectorAll('.api-button').forEach(item => {
 })
 
 function callApi(host, uri, methodName) {
-    const resultSpan = document.getElementById('result');
+    const errorSpan = document.getElementById('error');
+    const successSpan = document.getElementById('success');
 
     fetch(`${host}${uri}`,
         {
@@ -18,12 +19,13 @@ function callApi(host, uri, methodName) {
         }).then(response => {
         if (response.ok) {
             response.text().then(text => {
-                resultSpan.innerText = text;
+                successSpan.innerText = text;
+                errorSpan.innerText = 'Les erreurs, si présentes, s\'afficheront ici.'
             });
         }
-        else {
-            resultSpan.innerText = response.status;
-        }
     })
-        .catch(() => resultSpan.innerText = 'See F12 Console for errors');
+        .catch(() => {
+            errorSpan.innerText = 'Des erreurs se sont produites. Ouvrez la console développeur (F12) pour les observer.'
+            successSpan.innerText = 'Les résultats de la requête, si réalisée avec succès, s\'afficheront ici.';
+        });
 }

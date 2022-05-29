@@ -21,6 +21,7 @@ namespace CorsAPI
         {
             services.AddCors(options =>
             {
+                // in 'ValuesController', EnableCors specify which policy you use.
                 options.AddPolicy("MyPolicy", builder =>
                 {
                     builder.WithOrigins("https://localhost:5001")
